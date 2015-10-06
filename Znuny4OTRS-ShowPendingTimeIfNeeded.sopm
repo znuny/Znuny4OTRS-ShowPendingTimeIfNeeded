@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.0">
     <Name>Znuny4OTRS-ShowPendingTimeIfNeeded</Name>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
+    <ChangeLog Version="1.0.1" Date="2015-10-06 16:00:30 UTC">Initial version.</ChangeLog>
     <Framework>4.0.x</Framework>
     <PackageRequired Version="2.0.14">Znuny4OTRS-Repo</PackageRequired>
     <Vendor>Znuny GmbH</Vendor>

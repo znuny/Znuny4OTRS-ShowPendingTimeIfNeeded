@@ -1,5 +1,4 @@
 // --
-// Core.Agent.Znuny4OTRSShowPendingTimeIfNeeded.js - provides the special module functions for Znuny4OTRSShowPendingTimeIfNeeded.pm
 // Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see

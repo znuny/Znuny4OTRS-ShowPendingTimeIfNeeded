@@ -11,7 +11,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="Frontend::Output::FilterElementPost###OutputFilterPostZnuny4OTRSShowPendingTimeIfNeeded" Required="0" Valid="1">
-        <Description Translatable="1">This configuration registers an OutputFilter module that Initing the javascript functionality to remove PendingTime..</Description>
+        <Description Translatable="1">This configuration registers an OutputFilter module that injects the javascript functionality to remove PendingTime.</Description>
         <Group>Znuny4OTRS-ShowPendingTimeIfNeeded</Group>
         <SubGroup>Core::Web</SubGroup>
             <Setting>

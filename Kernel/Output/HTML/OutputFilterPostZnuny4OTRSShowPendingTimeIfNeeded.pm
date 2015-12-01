@@ -1,5 +1,4 @@
 # --
-# Kernel/Output/HTML/OutputFilterPostZnuny4OTRSShowPendingTimeIfNeeded.pm - Initing the javascript functionality to remove PendingTime.
 # Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see

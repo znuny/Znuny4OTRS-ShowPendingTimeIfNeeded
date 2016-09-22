@@ -1,5 +1,5 @@
 // --
-// Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
+// Copyright (C) 2012-2016 Znuny GmbH, http://znuny.com/
 // --
 // This software comes with ABSOLUTELY NO WARRANTY. For details, see
 // the enclosed file COPYING for license information (AGPL). If you
@@ -19,15 +19,15 @@ Core.Agent = Core.Agent || {};
  */
 Core.Agent.Znuny4OTRSShowPendingTimeIfNeeded = (function (TargetNS) {
     var PendingStates = [];
-    TargetNS.Init = function ( Param ) {
+    TargetNS.Init = function (Param) {
 
         var ParamCheckSuccess = true;
-        $.each( [ 'PendingStates' ], function (Index, ParameterName) {
-            if ( !Param[ ParameterName ] ) {
+        $.each([ 'PendingStates' ], function (Index, ParameterName) {
+            if (!Param[ ParameterName ]) {
                 ParamCheckSuccess = false;
             }
         });
-        if ( !ParamCheckSuccess ) {
+        if (!ParamCheckSuccess) {
             return false;
         }
         PendingStates = Param.PendingStates;
@@ -42,13 +42,23 @@ Core.Agent.Znuny4OTRSShowPendingTimeIfNeeded = (function (TargetNS) {
     TargetNS.TogglePendingState = function () {
 
         var StateID = $('#NextStateID, #NewStateID, #StateID, #ComposeStateID').val();
-        if ( $.inArray( StateID, PendingStates ) === -1 ) {
-            $('#Month').parent().prev().hide();
-            $('#Month').parent().hide();
-        }
-        else {
+
+        // check if state exists in the pending state list.
+        // do not use $.inArray see issue #1
+        var StateFound = false;
+        $.each(PendingStates, function(index, PendingStateID) {
+            if (PendingStateID != StateID) return true;
+            StateFound = true;
+            return false;
+        });
+
+        if (StateFound) {
             $('#Month').parent().prev().show();
             $('#Month').parent().show();
+        }
+        else {
+            $('#Month').parent().prev().hide();
+            $('#Month').parent().hide();
         }
         return true;
     }

@@ -1,5 +1,5 @@
 # --
-# Copyright (C) 2012-2015 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2012-2017 Znuny GmbH, http://znuny.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (AGPL). If you
@@ -12,6 +12,7 @@ use strict;
 use warnings;
 
 our @ObjectDependencies = (
+    'Kernel::Output::HTML::Layout',
     'Kernel::System::JSON',
     'Kernel::System::State',
 );
@@ -23,13 +24,6 @@ sub new {
     my $Self = {};
     bless( $Self, $Type );
 
-    # check needed objects
-    # additional LayoutObject $Self params are present, see LayoutObject for more information
-    NEEDED:
-    for my $Needed (qw( LayoutObject )) {
-        $Self->{$Needed} = $Param{$Needed} || die "Got no $Needed!";
-    }
-
     $Self->{Action} = $Param{Action} || '';
 
     return $Self;
@@ -38,12 +32,16 @@ sub new {
 sub Run {
     my ( $Self, %Param ) = @_;
 
-    my @StateList = $Kernel::OM->Get('Kernel::System::State')->StateGetStatesByType(
+    my $LayoutObject = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+    my $JSONObject   = $Kernel::OM->Get('Kernel::System::JSON');
+    my $StateObject  = $Kernel::OM->Get('Kernel::System::State');
+
+    my @StateList = $StateObject->StateGetStatesByType(
         StateType => [ 'pending reminder', 'pending auto' ],
         Result    => 'ID',
     );
 
-    my $StateListString = $Kernel::OM->Get('Kernel::System::JSON')->Encode(
+    my $StateListString = $JSONObject->Encode(
         Data => \@StateList,
     );
 
@@ -51,45 +49,9 @@ sub Run {
     Core.Agent.Znuny4OTRSShowPendingTimeIfNeeded.Init({ PendingStates : $StateListString });
 JS_BLOCK
 
-    $Self->AddJSOnDocumentCompleteIfNotExists(
+    my $Success = $LayoutObject->AddJSOnDocumentCompleteIfNotExists(
         Key  => 'Znuny4OTRSShowPendingTimeIfNeeded',
         Code => $JSBlock,
-    );
-
-    return 1;
-}
-
-sub AddJSOnDocumentCompleteIfNotExists {
-    my ( $Self, %Param ) = @_;
-
-    # check needed stuff
-    NEEDED:
-    for my $Needed (qw(Key Code)) {
-
-        next NEEDED if defined $Param{$Needed};
-
-        $Self->{LogObject}->Log(
-            Priority => 'error',
-            Message  => "Parameter '$Needed' is needed!",
-        );
-        return;
-    }
-
-    my $Exists = 0;
-    CODEJS:
-    for my $CodeJS ( @{ $Self->{LayoutObject}->{_JSOnDocumentComplete} || [] } ) {
-
-        next CODEJS if $CodeJS !~ m{ Key: \s $Param{Key}}xms;
-        $Exists = 1;
-        last CODEJS;
-    }
-
-    return 1 if $Exists;
-
-    my $AddCode = "// Key: $Param{Key}\n" . $Param{Code};
-
-    $Self->{LayoutObject}->AddJSOnDocumentComplete(
-        Code => $AddCode,
     );
 
     return 1;

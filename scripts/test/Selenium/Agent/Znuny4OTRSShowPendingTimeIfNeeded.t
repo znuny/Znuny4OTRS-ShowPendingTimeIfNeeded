@@ -101,9 +101,16 @@ my $SeleniumTest = sub {
             Content     => '6',
             Options     => {
                 KeyOrValue    => 'Key',
-                TriggerChange => 0,
-                }
+                TriggerChange => 1,
+            },
         );
+
+        $Self->True(
+            $Result,
+            "Change NextStateID successfully.",
+        );
+
+        next TEST if ! $Result;
 
         for my $Field (qw(Day Year Month Hour Minute)) {
 

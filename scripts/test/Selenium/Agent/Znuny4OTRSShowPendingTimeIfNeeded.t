@@ -34,6 +34,20 @@ my $SeleniumTest = sub {
 
     $ZnunyHelperObject->_PackageSetupInit();
 
+    my %LoaderConfig = (
+        AgentTicketPhone => [
+            'Core.Form.Znuny4OTRSInput.js',
+        ],
+        AgentTicketEmail => [
+            'Core.Form.Znuny4OTRSInput.js',
+        ],
+        AgentTicketNote => [
+            'Core.Form.Znuny4OTRSInput.js',
+        ],
+    );
+
+    my $Success = $ZnunyHelperObject->_LoaderAdd(%LoaderConfig);
+
     my @PendingStateIDs = $StateObject->StateGetStatesByType(
         StateType => [ 'pending reminder', 'pending auto' ],
         Result    => 'ID',
@@ -87,7 +101,7 @@ my $SeleniumTest = sub {
         );
 
         my $Element = $SeleniumObject->FindElementSave(
-            Selector     => '#NextStateID',
+            Selector     => "#$Test->{Data}->{State}",
             SelectorType => 'css',
         );
 
@@ -103,9 +117,10 @@ my $SeleniumTest = sub {
         }
 
         my $Result = $SeleniumObject->InputSet(
-            Attribute => $Test->{Data}->{State},
-            Content   => $PendingStateIDs[0],
-            Options   => {
+            Attribute   => $Test->{Data}->{State},
+            Content     => $PendingStateIDs[0],
+            WaitForAJAX => 0,
+            Options     => {
                 KeyOrValue => 'Key',
             },
         );
@@ -124,7 +139,6 @@ my $SeleniumTest = sub {
                 "Checking for enabled element '$Field'",
             );
         }
-
     }
 };
 

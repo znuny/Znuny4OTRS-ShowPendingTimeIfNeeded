@@ -51,7 +51,6 @@ my $SeleniumTest = sub {
                 Action => 'AgentTicketPhone',
                 State  => 'NextStateID',
             },
-            ExpectedResult => {},
         },
         {
             Name => "Action - AgentTicketEmail",
@@ -59,7 +58,6 @@ my $SeleniumTest = sub {
                 Action => 'AgentTicketEmail',
                 State  => 'NextStateID',
             },
-            ExpectedResult => {},
         },
         {
             Name => "Action - AgentTicketNote",
@@ -68,9 +66,7 @@ my $SeleniumTest = sub {
                 State  => 'NewStateID',
                 Ticket => 1,
             },
-            ExpectedResult => {},
         },
-
     );
 
     TEST:

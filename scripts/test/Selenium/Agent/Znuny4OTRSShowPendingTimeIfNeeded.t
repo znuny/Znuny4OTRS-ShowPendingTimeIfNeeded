@@ -30,6 +30,14 @@ my $SeleniumTest = sub {
     # initialize Znuny4OTRS Helpers and other needed objects
     my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
     my $HelperObject      = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+    my $StateObject       = $Kernel::OM->Get('Kernel::System::State');
+
+    $ZnunyHelperObject->_PackageSetupInit();
+
+    my @PendingStateIDs = $StateObject->StateGetStatesByType(
+        StateType => [ 'pending reminder', 'pending auto' ],
+        Result    => 'ID',
+    );
 
     # create test user and login
     my %TestUser = $SeleniumObject->AgentLogin(
@@ -41,6 +49,7 @@ my $SeleniumTest = sub {
             Name => "Action - AgentTicketPhone",
             Data => {
                 Action => 'AgentTicketPhone',
+                State  => 'NextStateID',
             },
             ExpectedResult => {},
         },
@@ -48,6 +57,7 @@ my $SeleniumTest = sub {
             Name => "Action - AgentTicketEmail",
             Data => {
                 Action => 'AgentTicketEmail',
+                State  => 'NextStateID',
             },
             ExpectedResult => {},
         },
@@ -55,6 +65,7 @@ my $SeleniumTest = sub {
             Name => "Action - AgentTicketNote",
             Data => {
                 Action => 'AgentTicketNote',
+                State  => 'NewStateID',
                 Ticket => 1,
             },
             ExpectedResult => {},
@@ -96,12 +107,10 @@ my $SeleniumTest = sub {
         }
 
         my $Result = $SeleniumObject->InputSet(
-            Attribute   => 'NextStateID',
-            WaitForAJAX => 1,
-            Content     => '6',
-            Options     => {
-                KeyOrValue    => 'Key',
-                TriggerChange => 1,
+            Attribute => $Test->{Data}->{State},
+            Content   => $PendingStateIDs[0],
+            Options   => {
+                KeyOrValue => 'Key',
             },
         );
 
@@ -110,7 +119,7 @@ my $SeleniumTest = sub {
             "Change NextStateID successfully.",
         );
 
-        next TEST if ! $Result;
+        next TEST if !$Result;
 
         for my $Field (qw(Day Year Month Hour Minute)) {
 

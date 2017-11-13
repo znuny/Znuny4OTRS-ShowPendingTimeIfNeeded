@@ -25,8 +25,25 @@ my $SeleniumTest = sub {
     my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
     my $HelperObject      = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
     my $StateObject       = $Kernel::OM->Get('Kernel::System::State');
+    my $SysConfigObject   = $Kernel::OM->Get('Kernel::System::SysConfig');
 
     $ZnunyHelperObject->_RebuildConfig();
+
+    for my $SysConfig ( 'AgentTicketNote' ){
+
+        my $Success = $SysConfigObject->SettingsSet(
+            UserID   => 1,
+            Comments => "Set $SysConfig State",
+            Settings => [
+                {
+                    Name                   => "Ticket::Frontend::$SysConfig###State",
+                    EffectiveValue         => '1',
+                    IsValid                => 1,
+                    UserModificationActive => 1,
+                },
+            ],
+        );
+    }
 
     my @PendingStateIDs = $StateObject->StateGetStatesByType(
         StateType => [ 'pending reminder', 'pending auto' ],

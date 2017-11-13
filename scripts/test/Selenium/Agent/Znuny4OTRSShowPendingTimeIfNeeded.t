@@ -15,12 +15,6 @@ use Kernel::System::VariableCheck qw(:all);
 use vars (qw($Self));
 
 # create configuration backup
-$Kernel::OM->ObjectParamAdd(
-    'Kernel::System::UnitTest::Helper' => {
-        RestoreSystemConfiguration => 1,
-    },
-);
-
 # get the Znuny4OTRS Selenium object
 my $SeleniumObject = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 
@@ -32,21 +26,7 @@ my $SeleniumTest = sub {
     my $HelperObject      = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
     my $StateObject       = $Kernel::OM->Get('Kernel::System::State');
 
-    $ZnunyHelperObject->_PackageSetupInit();
-
-    my %LoaderConfig = (
-        AgentTicketPhone => [
-            'Core.Form.Znuny4OTRSInput.js',
-        ],
-        AgentTicketEmail => [
-            'Core.Form.Znuny4OTRSInput.js',
-        ],
-        AgentTicketNote => [
-            'Core.Form.Znuny4OTRSInput.js',
-        ],
-    );
-
-    my $Success = $ZnunyHelperObject->_LoaderAdd(%LoaderConfig);
+    $ZnunyHelperObject->_RebuildConfig();
 
     my @PendingStateIDs = $StateObject->StateGetStatesByType(
         StateType => [ 'pending reminder', 'pending auto' ],

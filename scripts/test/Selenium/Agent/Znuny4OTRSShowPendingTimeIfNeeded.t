@@ -29,7 +29,7 @@ my $SeleniumTest = sub {
 
     $ZnunyHelperObject->_RebuildConfig();
 
-    for my $SysConfig ( 'AgentTicketNote' ){
+    for my $SysConfig ('AgentTicketNote') {
 
         my $Success = $SysConfigObject->SettingsSet(
             UserID   => 1,

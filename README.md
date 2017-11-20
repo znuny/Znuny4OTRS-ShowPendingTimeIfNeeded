@@ -8,7 +8,7 @@ This package contains the functionality to remove the pendingtime select if no p
 
 - [Znuny4OTRS-Repo](http://znuny.com/#!/znuny4otrs)
 
-- OTRS 5.0
+- OTRS 6.0
 
 **Installation**
 

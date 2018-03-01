@@ -32,6 +32,7 @@
                             <Item Key="AgentTicketMove">1</Item>
                             <Item Key="AgentTicketPhone">1</Item>
                             <Item Key="AgentTicketPhoneCommon">1</Item>
+                            <Item Key="AgentTicketFreeText">1</Item>
                         </Hash>
                     </Item>
                 </Hash>

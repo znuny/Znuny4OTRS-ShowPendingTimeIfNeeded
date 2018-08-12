@@ -14,13 +14,6 @@ use Kernel::System::VariableCheck qw(:all);
 
 use vars (qw($Self));
 
-# create configuration backup
-$Kernel::OM->ObjectParamAdd(
-    'Kernel::System::UnitTest::Helper' => {
-        RestoreSystemConfiguration => 1,
-    },
-);
-
 # get the Znuny4OTRS Selenium object
 my $SeleniumObject = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 
@@ -31,13 +24,14 @@ my $SeleniumTest = sub {
     my $ZnunyHelperObject = $Kernel::OM->Get('Kernel::System::ZnunyHelper');
     my $HelperObject      = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
     my $StateObject       = $Kernel::OM->Get('Kernel::System::State');
+    my $SysConfigObject   = $Kernel::OM->Get('Kernel::System::SysConfig');
 
     $ZnunyHelperObject->_PackageSetupInit();
 
-    $HelperObject->ConfigSettingChange(
+    $SysConfigObject->ConfigItemUpdate(
         Valid => 1,
         Key   => 'Ticket::Frontend::AgentTicketNote###State',
-        Value => 1,
+        Value => '1',
     );
 
     my %LoaderConfig = (

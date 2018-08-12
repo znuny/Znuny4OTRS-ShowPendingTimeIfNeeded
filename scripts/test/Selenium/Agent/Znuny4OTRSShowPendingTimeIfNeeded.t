@@ -34,6 +34,12 @@ my $SeleniumTest = sub {
 
     $ZnunyHelperObject->_PackageSetupInit();
 
+    $HelperObject->ConfigSettingChange(
+        Valid => 1,
+        Key   => 'Ticket::Frontend::AgentTicketNote###State',
+        Value => 1,
+    );
+
     my %LoaderConfig = (
         AgentTicketPhone => [
             'Core.Form.Znuny4OTRSInput.js',

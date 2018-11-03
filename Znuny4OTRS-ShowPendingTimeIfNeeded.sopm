@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <otrs_package version="1.0">
     <Name>Znuny4OTRS-ShowPendingTimeIfNeeded</Name>
-    <Version>4.0.2</Version>
+    <Version>4.0.3</Version>
+    <ChangeLog Version="4.0.3" Date="2018-11-03 13:50:11 +0100">Applied CodePolicy.</ChangeLog>
     <ChangeLog Version="4.0.2" Date="2018-05-16 18:46:06 +0200">Added template AgentTicketFreeText</ChangeLog>
     <ChangeLog Version="4.0.1" Date="2016-09-22 14:04:05 +0200">Fixed issue #1 - pending time does not get displayed.</ChangeLog>
     <ChangeLog Version="1.0.1" Date="2015-10-06 16:00:30 UTC">Initial version.</ChangeLog>

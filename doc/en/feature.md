@@ -1,4 +1,4 @@
-# Hide Pending-Timesettings
+# Functionality
 
 Using OTRS Standard the time settings for pending states is shown persistently, even if a state is chosen that doesn't need these time settings.
 

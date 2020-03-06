@@ -1,4 +1,4 @@
-# Warten-Zeiteinstellung ausblenden
+# Funktionalität
 
 Im OTRS Standard wird die Warten-Zeiteinstellungsmöglichkeit immer dargestellt, auch wenn ein Status gewählt wird, für den diese Zeit nicht benötigt wird.
 

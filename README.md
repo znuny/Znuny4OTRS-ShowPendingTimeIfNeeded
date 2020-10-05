@@ -1,4 +1,7 @@
-![Znuny logo](http://znuny.com/assets/images/logo_small.png)
+![Znuny logo](https://www.znuny.com/assets/images/logo_small.png)
+
+
+![Build status](https://badge.proxy.znuny.com/Znuny4OTRS-ShowPendingTimeIfNeeded/master)
 
 Show Pending Time if needed
 =================
@@ -6,13 +9,12 @@ This package contains the functionality to remove the pendingtime select if no p
 
 **Prerequisites**
 
-- [Znuny4OTRS-Repo](http://znuny.com/#!/znuny4otrs)
-
-- OTRS 6.0
+- OTRS 6
+- [Znuny4OTRS-Repo](https://www.znuny.com/add-ons/znuny4otrs-repository)
 
 **Installation**
 
-Download the package and install it via admin interface -> package manager or use Znuny4OTRS-Repo.
+Download the [package](https://addons.znuny.com/api/addon_repos/public/1078/latest) and install it via admin interface -> package manager or use [Znuny4OTRS-Repo](https://www.znuny.com/add-ons/znuny4otrs-repository).
 
 **Configuration**
 
@@ -20,14 +22,14 @@ No further configuration required.
 
 **Download**
 
-For download see [http://znuny.com/en/#!/addons](http://znuny.com/en/#!/addons)
+Download the [latest version](https://addons.znuny.com/api/addon_repos/public/1078/latest).
 
 **Commercial Support**
 
-For this extension and for OTRS in general visit [http://znuny.com](http://znuny.com). Looking forward to hear from you!
+For this extension and for OTRS in general visit [www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
 
 Enjoy!
 
- Your Znuny Team!
+Your Znuny Team!
 
- [http://znuny.com](http://znuny.com)
+[www.znuny.com](https://www.znuny.com)

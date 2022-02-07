@@ -9,7 +9,7 @@ This package contains the functionality to remove the pendingtime select if no p
 
 **Prerequisites**
 
-- OTRS 6
+- Znuny LTS 6, ((OTRS)) Community Edition 6 or OTRS 6
 - [Znuny4OTRS-Repo](https://www.znuny.com/add-ons/znuny4otrs-repository)
 
 **Installation**
@@ -26,7 +26,7 @@ Download the [latest version](https://addons.znuny.com/api/addon_repos/public/10
 
 **Commercial Support**
 
-For this extension and for OTRS in general visit [www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
+For this add-on and for Znuny in general visit [https://www.znuny.com](https://www.znuny.com). Looking forward to hear from you!
 
 Enjoy!
 
